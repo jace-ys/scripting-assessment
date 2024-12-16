@@ -17,6 +17,7 @@ import (
 
 	"github.com/alecthomas/kingpin/v2"
 	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp"
 	"go.opentelemetry.io/otel/metric"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
@@ -96,7 +97,7 @@ func run(ctx context.Context) error {
 				slog.Error("failed to collect last block number from ETH node", slog.String("err", err.Error()))
 			} else {
 				slog.Info("exporting last block number from ETH node", slog.Int64("number", num))
-				lastBlockNumberGauge.Record(ctx, num)
+				lastBlockNumberGauge.Record(ctx, num, metric.WithAttributes(attribute.Int("id", 1)))
 			}
 		}
 	}

@@ -13,4 +13,4 @@ FROM gcr.io/distroless/static-debian12
 WORKDIR /app
 USER nonroot:nonroot
 COPY --from=builder --chown=nonroot:nonroot /src/dist /app/bin
-ENTRYPOINT ["/app/bin/main"]
+ENTRYPOINT ["/app/bin/your-probe"]

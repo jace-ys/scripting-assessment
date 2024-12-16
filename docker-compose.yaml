@@ -48,3 +48,9 @@ services:
       - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor traceQLStreaming metricsSummary
     ports:
       - "3001:3000"
+
+  eth-node-exporter:
+    build:
+      context: ./your-probe
+    environment:
+      - OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://prometheus:9090/api/v1/otlp/v1/metrics
